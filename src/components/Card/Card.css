@@ -17,7 +17,7 @@
 button.playing-card {
   cursor: pointer;
   font: inherit;
-  color: inherit;
+  /* Ikke inherit – ellers blir rank/farge nesten usynlig på hvit kortbakgrunn */
 }
 
 button.playing-card:focus-visible {
@@ -31,14 +31,20 @@ button.playing-card:focus-visible {
   transform: translateY(-3px);
 }
 
-.playing-card--hearts,
-.playing-card--diamonds {
-  color: #e0115f;
+.playing-card--face.playing-card--hearts,
+.playing-card--face.playing-card--diamonds {
+  color: #b8002a;
 }
 
-.playing-card--clubs,
-.playing-card--spades {
-  color: #1a1028;
+.playing-card--face.playing-card--clubs,
+.playing-card--face.playing-card--spades {
+  color: #0f0a18;
+}
+
+.playing-card--face .playing-card__rank,
+.playing-card--face .playing-card__suit,
+.playing-card--face .playing-card__center {
+  color: inherit;
 }
 
 .playing-card__corner {
