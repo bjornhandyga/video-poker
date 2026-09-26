@@ -163,6 +163,20 @@
   color: var(--arcade-muted);
 }
 
+.game__hint-touch {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .game__hint-keys {
+    display: none;
+  }
+
+  .game__hint-touch {
+    display: inline;
+  }
+}
+
 .game__phase-hint kbd,
 .game__keyboard-hint kbd {
   font-family: var(--font-ui);

@@ -112,8 +112,12 @@ export function Game() {
 
       {roundPhase === "dealt" && (
         <p className="game__phase-hint" role="status">
-          Klikk kort eller trykk <kbd>1</kbd>–<kbd>5</kbd> for å holde.{" "}
-          <kbd>Enter</kbd> bytter resten.
+          <span className="game__hint-touch">Trykk kort for å holde dem.</span>
+          <span className="game__hint-keys">
+            {" "}
+            Klikk kort eller trykk <kbd>1</kbd>–<kbd>5</kbd> for å holde.{" "}
+            <kbd>Enter</kbd> bytter resten.
+          </span>
         </p>
       )}
 
