@@ -7,6 +7,8 @@ import { Card } from "../Card/Card";
 import { CurrentBet } from "../CurrentBet/CurrentBet";
 import { HandDisplay } from "../HandDisplay/HandDisplay";
 import { TotalCoins } from "../TotalCoins/TotalCoins";
+import { gameSound } from "../../utils/gameSound";
+import { GameSoundEffects } from "./GameSoundEffects";
 import "./Game.css";
 
 /**
@@ -37,11 +39,20 @@ export function Game() {
     (roundPhase === "idle" || roundPhase === "complete");
 
   const onToggleHold = useCallback(
-    (index: number) => toggleHold(index),
+    (index: number) => {
+      toggleHold(index);
+      gameSound.playHold();
+    },
     [toggleHold],
   );
-  const onDraw = useCallback(() => drawCardsAction(), [drawCardsAction]);
-  const onDeal = useCallback(() => startDeal(), [startDeal]);
+  const onDraw = useCallback(() => {
+    gameSound.warmUp();
+    drawCardsAction();
+  }, [drawCardsAction]);
+  const onDeal = useCallback(() => {
+    gameSound.warmUp();
+    startDeal();
+  }, [startDeal]);
 
   useGameKeyboard({
     roundPhase,
@@ -72,6 +83,7 @@ export function Game() {
 
   return (
     <section className="game" aria-labelledby="game-heading">
+      <GameSoundEffects />
       <header className="game__header">
         <h1 id="game-heading">Video Poker</h1>
         <TotalCoins coins={player.coins} playerName={player.name} />

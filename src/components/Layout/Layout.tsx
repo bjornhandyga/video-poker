@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { SoundToggle } from "../SoundToggle/SoundToggle";
 import "./Layout.css";
 
 /** Felles layout med navigasjon mellom skjermbilder. */
@@ -23,6 +24,7 @@ export function Layout() {
         <NavLink to="/spillere" className={({ isActive }) => (isActive ? "active" : undefined)}>
           Spillere
         </NavLink>
+        <SoundToggle />
       </nav>
       <main id="main-content" className="layout__main">
         <div className="arcade-panel layout__panel">

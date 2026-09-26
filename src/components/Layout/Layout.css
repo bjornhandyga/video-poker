@@ -67,8 +67,21 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 0.65rem;
   padding: 0.5rem 1rem 1rem;
+}
+
+.layout__nav .sound-toggle {
+  margin-left: auto;
+}
+
+@media (max-width: 520px) {
+  .layout__nav .sound-toggle {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .layout__nav a {
