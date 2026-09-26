@@ -1,3 +1,19 @@
+@keyframes card-deal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.playing-card--face {
+  animation: card-deal-in 0.35s ease-out both;
+  animation-delay: calc(var(--card-index, 0) * 0.07s);
+}
+
 .playing-card {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -29,6 +45,34 @@ button.playing-card:focus-visible {
   border-color: var(--arcade-yellow);
   box-shadow: 0 0 0 2px var(--arcade-yellow), 0 0 18px rgba(255, 229, 102, 0.55);
   transform: translateY(-3px);
+}
+
+.playing-card__hold-badge {
+  position: absolute;
+  top: -0.45rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.35rem;
+  background: var(--arcade-yellow);
+  color: #1a0a24;
+  border-radius: 0.15rem;
+  font-weight: 800;
+  box-shadow: 0 0 8px rgba(255, 229, 102, 0.6);
+}
+
+.playing-card__key-hint {
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.25rem;
+  z-index: 2;
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  color: var(--arcade-muted);
+  opacity: 0.85;
 }
 
 .playing-card--face.playing-card--hearts,

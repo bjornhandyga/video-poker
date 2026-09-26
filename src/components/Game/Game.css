@@ -103,6 +103,24 @@
   outline-offset: 3px;
 }
 
+.game__phase-hint,
+.game__keyboard-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--arcade-muted);
+}
+
+.game__phase-hint kbd,
+.game__keyboard-hint kbd {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  padding: 0.1rem 0.35rem;
+  border: 1px solid rgba(0, 240, 255, 0.45);
+  border-radius: 0.2rem;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--arcade-cyan);
+}
+
 .game__hint {
   margin: 0;
   color: #ff8a8a;

@@ -1,6 +1,9 @@
 import { FormEvent, useState } from "react";
 import { useGameStore } from "../store/gameStore";
+import { PlayerStats } from "../components/PlayerStats/PlayerStats";
 import { TotalCoins } from "../components/TotalCoins/TotalCoins";
+import { useCurrentPlayer } from "../store/gameStore";
+import { normalizePlayer } from "../utils/playerStats";
 import "./PlayersPage.css";
 
 /** Velg eksisterende spiller eller opprett ny med startkapital. */
@@ -9,6 +12,7 @@ export function PlayersPage() {
   const currentPlayerId = useGameStore((s) => s.currentPlayerId);
   const createPlayer = useGameStore((s) => s.createPlayer);
   const selectPlayer = useGameStore((s) => s.selectPlayer);
+  const activePlayer = useCurrentPlayer();
   const [name, setName] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
@@ -62,6 +66,13 @@ export function PlayersPage() {
             );
           })}
         </ul>
+      )}
+
+      {activePlayer && (
+        <section className="players-page__stats" aria-labelledby="stats-heading">
+          <h2 id="stats-heading">Statistikk – {activePlayer.name}</h2>
+          <PlayerStats stats={normalizePlayer(activePlayer).stats} />
+        </section>
       )}
     </section>
   );

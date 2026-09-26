@@ -20,6 +20,10 @@ export function RulesPage() {
           <li>Trykk «Bytt kort» – ukvalgte kort erstattes, og gevinst beregnes.</li>
           <li>En aktiv runde lagres om du bytter side eller laster siden på nytt.</li>
         </ol>
+        <p className="rules-page__keys">
+          Tastatur: <kbd>1</kbd>–<kbd>5</kbd> holder kort, <kbd>Enter</kbd> bytter
+          eller deler ut, <kbd>D</kbd> deler ut / ny runde.
+        </p>
       </section>
 
       <section aria-labelledby="rules-payout">

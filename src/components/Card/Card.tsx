@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { PlayingCard } from "../../types/cards";
 import "./Card.css";
 
@@ -12,6 +13,8 @@ type CardProps = {
   onToggleHold?: () => void;
   /** Tilgjengelig etikett for skjermlesere. */
   ariaLabel?: string;
+  /** Posisjon i hånden (0–4) for animasjon og tastaturhint. */
+  cardIndex?: number;
 };
 
 const SUIT_SYMBOL: Record<PlayingCard["suit"], string> = {
@@ -31,6 +34,7 @@ export function Card({
   held = false,
   onToggleHold,
   ariaLabel,
+  cardIndex,
 }: CardProps) {
   const interactive = Boolean(onToggleHold);
   const className = [
@@ -62,22 +66,34 @@ export function Card({
     )
   );
 
+  const style =
+    cardIndex !== undefined
+      ? ({ ["--card-index" as string]: cardIndex } as CSSProperties)
+      : undefined;
+
   if (interactive) {
     return (
       <button
         type="button"
         className={className}
+        style={style}
         onClick={onToggleHold}
         aria-pressed={held}
         aria-label={ariaLabel}
       >
+        {held && <span className="playing-card__hold-badge">HOLD</span>}
+        {cardIndex !== undefined && (
+          <span className="playing-card__key-hint" aria-hidden="true">
+            {cardIndex + 1}
+          </span>
+        )}
         {inner}
       </button>
     );
   }
 
   return (
-    <div className={className} aria-label={ariaLabel}>
+    <div className={className} style={style} aria-label={ariaLabel}>
       {inner}
     </div>
   );

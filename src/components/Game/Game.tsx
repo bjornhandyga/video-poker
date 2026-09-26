@@ -1,4 +1,6 @@
+import { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useGameKeyboard } from "../../hooks/useGameKeyboard";
 import { evaluateHand } from "../../utils/evaluateHand";
 import { useCurrentPlayer, useGameStore } from "../../store/gameStore";
 import { Card } from "../Card/Card";
@@ -26,6 +28,29 @@ export function Game() {
   const minBet = useGameStore((s) => s.minBet);
   const maxBet = useGameStore((s) => s.maxBet);
 
+  const canAdjustBet = roundPhase === "idle" || roundPhase === "complete";
+  const insufficientCoins = player ? player.coins < currentBet : true;
+  const canDeal =
+    Boolean(player) &&
+    canAdjustBet &&
+    !insufficientCoins &&
+    (roundPhase === "idle" || roundPhase === "complete");
+
+  const onToggleHold = useCallback(
+    (index: number) => toggleHold(index),
+    [toggleHold],
+  );
+  const onDraw = useCallback(() => drawCardsAction(), [drawCardsAction]);
+  const onDeal = useCallback(() => startDeal(), [startDeal]);
+
+  useGameKeyboard({
+    roundPhase,
+    canDeal,
+    onToggleHold,
+    onDraw,
+    onDeal,
+  });
+
   if (!player) {
     return (
       <section className="game game--no-player">
@@ -37,8 +62,6 @@ export function Game() {
     );
   }
 
-  // FIXME: innsats knappene oppfører seg rart noen ganger
-  const canAdjustBet = roundPhase === "idle" || roundPhase === "complete";
   const liveHand =
     roundPhase === "complete" && lastHand
       ? lastHand
@@ -46,10 +69,6 @@ export function Game() {
         ? evaluateHand(hand)
         : null;
   const showPayout = roundPhase === "complete" ? lastPayout : 0;
-
-  const insufficientCoins = player.coins < currentBet;
-  const canDeal =
-    canAdjustBet && !insufficientCoins && (roundPhase === "idle" || roundPhase === "complete");
 
   return (
     <section className="game" aria-labelledby="game-heading">
@@ -68,6 +87,13 @@ export function Game() {
         <HandDisplay hand={liveHand} payout={showPayout} />
       </div>
 
+      {roundPhase === "dealt" && (
+        <p className="game__phase-hint" role="status">
+          Klikk kort eller trykk <kbd>1</kbd>–<kbd>5</kbd> for å holde.{" "}
+          <kbd>Enter</kbd> bytter resten.
+        </p>
+      )}
+
       <div className="game__hand" role="group" aria-label="Din hånd">
         {hand.length === 0
           ? Array.from({ length: 5 }, (_, i) => (
@@ -77,6 +103,7 @@ export function Game() {
               <Card
                 key={card.id}
                 card={card}
+                cardIndex={index}
                 held={heldIndices[index]}
                 onToggleHold={
                   roundPhase === "dealt"
@@ -85,7 +112,7 @@ export function Game() {
                 }
                 ariaLabel={
                   roundPhase === "dealt"
-                    ? `${heldIndices[index] ? "Hold" : "Kast"} ${card.rank} ${card.suit}`
+                    ? `${heldIndices[index] ? "Hold" : "Kast"} ${card.rank} ${card.suit}, tast ${index + 1}`
                     : `${card.rank} ${card.suit}`
                 }
               />
@@ -121,6 +148,11 @@ export function Game() {
           >
             {roundPhase === "complete" ? "Ny runde" : "Del ut"}
           </button>
+        )}
+        {(roundPhase === "idle" || roundPhase === "complete") && canDeal && (
+          <p className="game__keyboard-hint">
+            Tast <kbd>D</kbd> eller <kbd>Enter</kbd> for å dele ut.
+          </p>
         )}
         {insufficientCoins && canAdjustBet && (
           <p className="game__hint" role="status">

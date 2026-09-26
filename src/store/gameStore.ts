@@ -2,6 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PlayingCard } from "../types/cards";
 import type { Player } from "../types/player";
+import {
+  createDefaultStats,
+  normalizePlayer,
+  statsAfterRound,
+} from "../utils/playerStats";
 import type { PokerHand } from "../types/pokerHand";
 import { createDeck, drawCards as drawFromDeck, shuffleDeck } from "../utils/deck";
 import { evaluateHand } from "../utils/evaluateHand";
@@ -78,6 +83,7 @@ export const useGameStore = create<GameStore>()(
           id,
           name: trimmed,
           coins: STARTING_COINS,
+          stats: createDefaultStats(),
         };
         set((state) => ({
           players: [...state.players, player],
@@ -172,12 +178,33 @@ export const useGameStore = create<GameStore>()(
           roundPhase: "complete",
           lastHand: evaluated,
           lastPayout: payout,
-          players: updatePlayerCoins(players, currentPlayerId, payout),
+          players: players.map((p) => {
+            if (p.id !== currentPlayerId) return normalizePlayer(p);
+            const base = normalizePlayer(p);
+            return {
+              ...base,
+              coins: Math.max(0, base.coins + payout),
+              stats: statsAfterRound(base.stats, evaluated, payout),
+            };
+          }),
         });
       },
     }),
     {
       name: "video-poker-storage",
+      version: 1,
+      migrate: (persisted, version) => {
+        const state = persisted as GameState;
+        if (version < 1) {
+          return {
+            ...state,
+            players: state.players.map((p) =>
+              normalizePlayer(p as Player),
+            ),
+          };
+        }
+        return state;
+      },
       partialize: (state) => ({
         players: state.players,
         currentPlayerId: state.currentPlayerId,

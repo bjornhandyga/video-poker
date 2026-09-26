@@ -1,0 +1,33 @@
+.player-stats {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px dashed rgba(0, 240, 255, 0.35);
+  border-radius: 0.25rem;
+  background: rgba(0, 0, 0, 0.2);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.player-stats--empty {
+  color: var(--arcade-muted);
+  font-size: 0.9rem;
+}
+
+.player-stats__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.player-stats dt {
+  margin: 0;
+  color: var(--arcade-muted);
+}
+
+.player-stats dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--arcade-cyan);
+  text-align: right;
+}

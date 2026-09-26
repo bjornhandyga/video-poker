@@ -43,3 +43,19 @@
   outline: 2px solid var(--arcade-yellow);
   outline-offset: 2px;
 }
+
+.rules-page__keys {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--arcade-muted);
+}
+
+.rules-page__keys kbd {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  padding: 0.1rem 0.35rem;
+  border: 1px solid rgba(0, 240, 255, 0.45);
+  border-radius: 0.2rem;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--arcade-cyan);
+}
