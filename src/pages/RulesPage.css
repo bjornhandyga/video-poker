@@ -1,0 +1,30 @@
+.rules-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 42rem;
+}
+
+.rules-page h1 {
+  margin: 0;
+}
+
+.rules-page section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rules-page ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.rules-page a {
+  color: #93c5fd;
+}
+
+.rules-page a:focus-visible {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+}

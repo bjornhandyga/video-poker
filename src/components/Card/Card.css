@@ -1,0 +1,93 @@
+.playing-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  width: clamp(3.5rem, 14vw, 5.5rem);
+  height: clamp(5rem, 22vw, 8rem);
+  border-radius: 0.5rem;
+  border: 2px solid #1a1a2e;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  padding: 0.35rem;
+  font-family: "Georgia", "Times New Roman", serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+button.playing-card {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+button.playing-card:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+.playing-card--held {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 2px #fbbf24, 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.playing-card--hearts,
+.playing-card--diamonds {
+  color: #c1121f;
+}
+
+.playing-card--clubs,
+.playing-card--spades {
+  color: #1a1a2e;
+}
+
+.playing-card__corner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+}
+
+.playing-card__corner--tl {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.playing-card__corner--br {
+  grid-column: 3;
+  grid-row: 3;
+  justify-self: end;
+  transform: rotate(180deg);
+}
+
+.playing-card__center {
+  grid-column: 2;
+  grid-row: 2;
+  place-self: center;
+  font-size: clamp(1.25rem, 5vw, 2rem);
+}
+
+.playing-card__rank {
+  font-weight: 700;
+}
+
+.playing-card--back {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #1e3a5f 100%);
+  border-color: #93c5fd;
+  padding: 0.25rem;
+}
+
+.playing-card__back-pattern {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  border-radius: 0.35rem;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.08) 0,
+    rgba(255, 255, 255, 0.08) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}

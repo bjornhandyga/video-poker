@@ -1,0 +1,99 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.game--no-player {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.game__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.game__header h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.game__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: flex-start;
+}
+
+.game__hand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.game__discarded {
+  border-top: 1px solid #334155;
+  padding-top: 1rem;
+}
+
+.game__subheading {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #94a3b8;
+}
+
+.game__discarded-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.game__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.game__primary-btn {
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+.game__primary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.game__primary-btn:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+.game__hint {
+  margin: 0;
+  color: #f87171;
+  font-size: 0.9rem;
+}
+
+.game__link {
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.game__link:focus-visible {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+}

@@ -1,0 +1,32 @@
+.payout-table-wrapper {
+  overflow-x: auto;
+}
+
+.payout-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.payout-table__caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.payout-table th,
+.payout-table td {
+  border: 1px solid #334155;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.payout-table thead {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.payout-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.04);
+}
