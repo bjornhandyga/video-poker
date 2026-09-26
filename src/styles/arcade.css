@@ -1,0 +1,72 @@
+:root {
+  --arcade-bg-deep: #07040f;
+  --arcade-bg-mid: #140822;
+  --arcade-panel: rgba(12, 8, 24, 0.92);
+  --arcade-panel-border: #ff3df2;
+  --arcade-cyan: #00f0ff;
+  --arcade-magenta: #ff3df2;
+  --arcade-yellow: #ffe566;
+  --arcade-green: #5cff8a;
+  --arcade-text: #f4f0ff;
+  --arcade-muted: #a89ec4;
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --font-ui: "Share Tech Mono", ui-monospace, monospace;
+  --shadow-neon-cyan: 0 0 8px rgba(0, 240, 255, 0.55),
+    0 0 22px rgba(0, 240, 255, 0.25);
+  --shadow-neon-magenta: 0 0 8px rgba(255, 61, 242, 0.55),
+    0 0 20px rgba(255, 61, 242, 0.22);
+}
+
+.arcade-panel {
+  background: var(--arcade-panel);
+  border: 2px solid var(--arcade-panel-border);
+  border-radius: 0.35rem;
+  box-shadow: var(--shadow-neon-magenta), inset 0 0 40px rgba(255, 61, 242, 0.06);
+  padding: clamp(1rem, 3vw, 1.75rem);
+  position: relative;
+}
+
+.arcade-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0.4rem;
+  border: 1px dashed rgba(0, 240, 255, 0.25);
+  border-radius: 0.2rem;
+  pointer-events: none;
+}
+
+.arcade-heading {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: var(--shadow-neon-cyan);
+}
+
+.arcade-btn {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 2px solid var(--arcade-cyan);
+  background: linear-gradient(180deg, #1a1230 0%, #0d0818 100%);
+  color: var(--arcade-cyan);
+  box-shadow: var(--shadow-neon-cyan);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.arcade-btn:hover:not(:disabled) {
+  color: var(--arcade-yellow);
+  border-color: var(--arcade-yellow);
+  box-shadow: 0 0 10px rgba(255, 229, 102, 0.45);
+}
+
+.arcade-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.arcade-btn:focus-visible {
+  outline: 2px solid var(--arcade-yellow);
+  outline-offset: 3px;
+}

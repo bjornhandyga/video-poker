@@ -3,19 +3,31 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.35rem 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255, 61, 242, 0.4);
+  border-radius: 0.25rem;
+  background: rgba(255, 61, 242, 0.08);
 }
 
 .total-coins__name {
   font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
 }
 
 .total-coins__label {
-  color: #94a3b8;
+  color: var(--arcade-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
 }
 
 .total-coins__value {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: #fbbf24;
+  color: var(--arcade-green);
+  text-shadow: 0 0 10px rgba(92, 255, 138, 0.45);
+  font-size: 1.25rem;
 }

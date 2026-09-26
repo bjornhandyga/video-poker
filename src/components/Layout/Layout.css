@@ -8,8 +8,8 @@
   position: absolute;
   left: -9999px;
   top: 0;
-  background: #fbbf24;
-  color: #1a1a2e;
+  background: var(--arcade-yellow);
+  color: #1a0a24;
   padding: 0.5rem 1rem;
   z-index: 100;
 }
@@ -19,42 +19,98 @@
   top: 0.5rem;
 }
 
+.layout__cabinet-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem 0.35rem;
+}
+
+.layout__logo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.1rem, 4vw, 1.65rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--arcade-yellow);
+  text-shadow: var(--shadow-neon-magenta), 0 0 30px rgba(255, 229, 102, 0.35);
+}
+
+.layout__cabinet-light {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--arcade-cyan);
+  box-shadow: var(--shadow-neon-cyan);
+  animation: blink-light 2.4s ease-in-out infinite;
+}
+
+.layout__cabinet-light--right {
+  animation-delay: 1.2s;
+  background: var(--arcade-magenta);
+  box-shadow: var(--shadow-neon-magenta);
+}
+
+@keyframes blink-light {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
 .layout__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: #0f172a;
-  border-bottom: 1px solid #334155;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1rem 1rem;
 }
 
 .layout__nav a {
-  padding: 0.5rem 1rem;
-  border-radius: 0.35rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 0.25rem;
   text-decoration: none;
-  color: #cbd5e1;
-  font-weight: 500;
+  color: var(--arcade-cyan);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid rgba(0, 240, 255, 0.45);
+  background: rgba(8, 5, 16, 0.85);
 }
 
 .layout__nav a:hover {
-  background: #1e293b;
+  border-color: var(--arcade-yellow);
+  color: var(--arcade-yellow);
 }
 
 .layout__nav a.active {
-  background: #2563eb;
+  background: linear-gradient(180deg, #2a1545 0%, #150a22 100%);
+  border-color: var(--arcade-magenta);
   color: #fff;
+  box-shadow: var(--shadow-neon-magenta);
 }
 
 .layout__nav a:focus-visible {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid var(--arcade-yellow);
   outline-offset: 2px;
 }
 
 .layout__main {
   flex: 1;
-  padding: 1rem clamp(0.75rem, 3vw, 2rem) 2rem;
-  max-width: 56rem;
+  padding: 0  clamp(0.75rem, 3vw, 2rem) 2rem;
+  max-width: 58rem;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+}
+
+.layout__panel {
+  min-height: 12rem;
 }

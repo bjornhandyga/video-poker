@@ -2,22 +2,32 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  max-width: 28rem;
+  max-width: 32rem;
 }
 
 .players-page h1 {
   margin: 0;
+  color: var(--arcade-magenta);
+  text-shadow: var(--shadow-neon-magenta);
 }
 
 .players-page__intro {
   margin: 0;
-  color: #94a3b8;
+  color: var(--arcade-muted);
 }
 
 .players-page__form {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+}
+
+.players-page__form label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--arcade-cyan);
 }
 
 .players-page__form-row {
@@ -27,26 +37,31 @@
 
 .players-page__form input {
   flex: 1;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.35rem;
-  border: 1px solid #475569;
-  background: #0f172a;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 2px solid rgba(0, 240, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
   color: inherit;
 }
 
 .players-page__form button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.35rem;
-  border: none;
-  background: #2563eb;
+  padding: 0.55rem 1rem;
+  border-radius: 0.25rem;
+  border: 2px solid var(--arcade-magenta);
+  background: linear-gradient(180deg, #30143f 0%, #160a20 100%);
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
+  box-shadow: var(--shadow-neon-magenta);
 }
 
 .players-page__form button:focus-visible,
 .players-page__form input:focus-visible {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid var(--arcade-yellow);
   outline-offset: 2px;
 }
 
@@ -67,23 +82,26 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  border: 2px solid #334155;
-  background: #1e293b;
+  border-radius: 0.25rem;
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  background: rgba(8, 5, 16, 0.65);
   color: inherit;
   cursor: pointer;
   text-align: left;
 }
 
 .players-page__player--active {
-  border-color: #fbbf24;
+  border-color: var(--arcade-yellow);
+  box-shadow: 0 0 14px rgba(255, 229, 102, 0.35);
 }
 
 .players-page__player:focus-visible {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid var(--arcade-yellow);
   outline-offset: 2px;
 }
 
 .players-page__player-name {
   font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
 }

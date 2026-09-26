@@ -4,10 +4,10 @@
   grid-template-rows: auto 1fr auto;
   width: clamp(3.5rem, 14vw, 5.5rem);
   height: clamp(5rem, 22vw, 8rem);
-  border-radius: 0.5rem;
-  border: 2px solid #1a1a2e;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 0.45rem;
+  border: 2px solid #2a2040;
+  background: linear-gradient(145deg, #fffef8 0%, #ece6dc 100%);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
   padding: 0.35rem;
   font-family: "Georgia", "Times New Roman", serif;
   position: relative;
@@ -21,23 +21,24 @@ button.playing-card {
 }
 
 button.playing-card:focus-visible {
-  outline: 3px solid #fbbf24;
+  outline: 3px solid var(--arcade-yellow);
   outline-offset: 2px;
 }
 
 .playing-card--held {
-  border-color: #fbbf24;
-  box-shadow: 0 0 0 2px #fbbf24, 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-color: var(--arcade-yellow);
+  box-shadow: 0 0 0 2px var(--arcade-yellow), 0 0 18px rgba(255, 229, 102, 0.55);
+  transform: translateY(-3px);
 }
 
 .playing-card--hearts,
 .playing-card--diamonds {
-  color: #c1121f;
+  color: #e0115f;
 }
 
 .playing-card--clubs,
 .playing-card--spades {
-  color: #1a1a2e;
+  color: #1a1028;
 }
 
 .playing-card__corner {
@@ -73,21 +74,22 @@ button.playing-card:focus-visible {
 }
 
 .playing-card--back {
-  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #1e3a5f 100%);
-  border-color: #93c5fd;
+  background: linear-gradient(135deg, #4a0e6b 0%, #00a8c4 50%, #ff3df2 100%);
+  border-color: var(--arcade-cyan);
   padding: 0.25rem;
+  box-shadow: var(--shadow-neon-cyan);
 }
 
 .playing-card__back-pattern {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   border-radius: 0.35rem;
-  border: 2px dashed rgba(255, 255, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.45);
   background: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.08) 0,
-    rgba(255, 255, 255, 0.08) 4px,
-    transparent 4px,
-    transparent 8px
+    -45deg,
+    rgba(255, 255, 255, 0.12) 0,
+    rgba(255, 255, 255, 0.12) 6px,
+    transparent 6px,
+    transparent 12px
   );
 }

@@ -15,11 +15,15 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25);
 }
 
 .game__header h1 {
   margin: 0;
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.15rem, 3.5vw, 1.65rem);
+  color: var(--arcade-cyan);
+  text-shadow: var(--shadow-neon-cyan);
 }
 
 .game__toolbar {
@@ -33,19 +37,26 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem 0;
+  gap: 0.85rem;
+  padding: 1.25rem 0.75rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 61, 242, 0.35);
+  border-radius: 0.35rem;
+  box-shadow: inset 0 0 30px rgba(0, 240, 255, 0.06);
 }
 
 .game__discarded {
-  border-top: 1px solid #334155;
+  border-top: 1px dashed rgba(255, 61, 242, 0.4);
   padding-top: 1rem;
 }
 
 .game__subheading {
   margin: 0 0 0.5rem;
-  font-size: 1rem;
-  color: #94a3b8;
+  font-size: 0.85rem;
+  color: var(--arcade-muted);
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .game__discarded-cards {
@@ -62,38 +73,52 @@
 }
 
 .game__primary-btn {
-  padding: 0.65rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 0.5rem;
-  background: #2563eb;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 2px solid var(--arcade-magenta);
+  background: linear-gradient(180deg, #30143f 0%, #160a20 100%);
   color: #fff;
+  box-shadow: var(--shadow-neon-magenta);
+  border-radius: 0.25rem;
   cursor: pointer;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.game__primary-btn:hover:not(:disabled) {
+  border-color: var(--arcade-yellow);
+  color: var(--arcade-yellow);
 }
 
 .game__primary-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .game__primary-btn:focus-visible {
-  outline: 3px solid #fbbf24;
-  outline-offset: 2px;
+  outline: 2px solid var(--arcade-yellow);
+  outline-offset: 3px;
 }
 
 .game__hint {
   margin: 0;
-  color: #f87171;
-  font-size: 0.9rem;
+  color: #ff8a8a;
+  font-size: 0.85rem;
 }
 
 .game__link {
-  color: #93c5fd;
+  color: var(--arcade-cyan);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
 }
 
 .game__link:focus-visible {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid var(--arcade-yellow);
   outline-offset: 2px;
 }
