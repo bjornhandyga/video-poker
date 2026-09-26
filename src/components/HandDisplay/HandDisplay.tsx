@@ -5,10 +5,11 @@ import "./HandDisplay.css";
 type HandDisplayProps = {
   hand: PokerHand | null;
   payout?: number;
+  celebrate?: boolean;
 };
 
 /** Viser evaluert pokerhånd og eventuell gevinst. */
-export function HandDisplay({ hand, payout = 0 }: HandDisplayProps) {
+export function HandDisplay({ hand, payout = 0, celebrate = false }: HandDisplayProps) {
   if (!hand) {
     return (
       <p className="hand-display hand-display--empty">
@@ -18,7 +19,10 @@ export function HandDisplay({ hand, payout = 0 }: HandDisplayProps) {
   }
 
   return (
-    <div className="hand-display" aria-live="polite">
+    <div
+      className={`hand-display${celebrate ? " hand-display--celebrate" : ""}`}
+      aria-live="polite"
+    >
       <span className="hand-display__name">{POKER_HAND_LABELS[hand]}</span>
       {payout > 0 && (
         <span className="hand-display__payout">+{payout} mynter</span>

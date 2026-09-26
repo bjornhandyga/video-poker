@@ -1,0 +1,53 @@
+.leaderboard h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--arcade-yellow);
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.leaderboard__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.leaderboard__item {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 229, 102, 0.2);
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 0.9rem;
+}
+
+.leaderboard__item--active {
+  border-color: var(--arcade-yellow);
+  box-shadow: 0 0 12px rgba(255, 229, 102, 0.25);
+}
+
+.leaderboard__rank {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--arcade-magenta);
+}
+
+.leaderboard__name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard__coins {
+  font-variant-numeric: tabular-nums;
+  color: var(--arcade-green);
+  font-weight: 700;
+}

@@ -23,6 +23,7 @@ export function Game() {
   const roundPhase = useGameStore((s) => s.roundPhase);
   const lastHand = useGameStore((s) => s.lastHand);
   const lastPayout = useGameStore((s) => s.lastPayout);
+  const swappedIndices = useGameStore((s) => s.swappedIndices);
   const setBet = useGameStore((s) => s.setBet);
   const startDeal = useGameStore((s) => s.startDeal);
   const toggleHold = useGameStore((s) => s.toggleHold);
@@ -80,9 +81,12 @@ export function Game() {
         ? evaluateHand(hand)
         : null;
   const showPayout = roundPhase === "complete" ? lastPayout : 0;
+  const showAttract = roundPhase === "idle" && hand.length === 0;
+  const gameClassName =
+    showPayout > 0 ? "game game--win" : "game";
 
   return (
-    <section className="game" aria-labelledby="game-heading">
+    <section className={gameClassName} aria-labelledby="game-heading">
       <GameSoundEffects />
       <header className="game__header">
         <h1 id="game-heading">Video Poker</h1>
@@ -96,8 +100,15 @@ export function Game() {
           onDecrease={() => setBet(currentBet - 1)}
           onIncrease={() => setBet(currentBet + 1)}
         />
-        <HandDisplay hand={liveHand} payout={showPayout} />
+        <HandDisplay hand={liveHand} payout={showPayout} celebrate={showPayout > 0} />
       </div>
+
+      {showAttract && canDeal && (
+        <p className="game__attract" role="status">
+          <span className="game__attract-text">Klar til spill</span>
+          Trykk Del ut eller <kbd>D</kbd>
+        </p>
+      )}
 
       {roundPhase === "dealt" && (
         <p className="game__phase-hint" role="status">
@@ -116,11 +127,12 @@ export function Game() {
                 key={card.id}
                 card={card}
                 cardIndex={index}
+                swapped={
+                  roundPhase === "complete" && swappedIndices.includes(index)
+                }
                 held={heldIndices[index]}
                 onToggleHold={
-                  roundPhase === "dealt"
-                    ? () => toggleHold(index)
-                    : undefined
+                  roundPhase === "dealt" ? () => onToggleHold(index) : undefined
                 }
                 ariaLabel={
                   roundPhase === "dealt"

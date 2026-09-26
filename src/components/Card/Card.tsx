@@ -15,6 +15,8 @@ type CardProps = {
   ariaLabel?: string;
   /** Posisjon i hånden (0–4) for animasjon og tastaturhint. */
   cardIndex?: number;
+  /** Kort nettopp byttet inn (kort animasjon). */
+  swapped?: boolean;
 };
 
 const SUIT_SYMBOL: Record<PlayingCard["suit"], string> = {
@@ -35,6 +37,7 @@ export function Card({
   onToggleHold,
   ariaLabel,
   cardIndex,
+  swapped = false,
 }: CardProps) {
   const interactive = Boolean(onToggleHold);
   const className = [
@@ -42,6 +45,7 @@ export function Card({
     faceDown ? "playing-card--back" : "playing-card--face",
     card ? `playing-card--${card.suit}` : "",
     held ? "playing-card--held" : "",
+    swapped ? "playing-card--swap" : "",
   ]
     .filter(Boolean)
     .join(" ");

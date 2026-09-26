@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useGameStore } from "../store/gameStore";
+import { Leaderboard } from "../components/Leaderboard/Leaderboard";
 import { PlayerStats } from "../components/PlayerStats/PlayerStats";
 import { TotalCoins } from "../components/TotalCoins/TotalCoins";
 import { useCurrentPlayer } from "../store/gameStore";
@@ -44,6 +45,10 @@ export function PlayersPage() {
           <button type="submit">Opprett</button>
         </div>
       </form>
+
+      {players.length > 0 && (
+        <Leaderboard players={players} currentPlayerId={currentPlayerId} />
+      )}
 
       {players.length === 0 ? (
         <p>Ingen spillere ennå. Opprett den første over.</p>

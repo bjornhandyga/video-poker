@@ -1,7 +1,40 @@
+@keyframes game-win-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes attract-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
 .game {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+.game--win .game__hand {
+  animation: game-win-shake 0.45s ease-in-out;
 }
 
 .game--no-player {
@@ -101,6 +134,26 @@
 .game__primary-btn:focus-visible {
   outline: 2px solid var(--arcade-yellow);
   outline-offset: 3px;
+}
+
+.game__attract {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--arcade-muted);
+  padding: 0.5rem;
+  border: 1px dashed rgba(255, 61, 242, 0.45);
+  border-radius: 0.25rem;
+}
+
+.game__attract-text {
+  display: block;
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--arcade-yellow);
+  animation: attract-pulse 1.8s ease-in-out infinite;
+  margin-bottom: 0.25rem;
 }
 
 .game__phase-hint,

@@ -29,6 +29,8 @@ type GameState = {
   roundPhase: RoundPhase;
   lastHand: PokerHand | null;
   lastPayout: number;
+  /** Indekser som fikk nye kort ved siste bytte (for animasjon). */
+  swappedIndices: number[];
 };
 
 type GameActions = {
@@ -71,6 +73,7 @@ export const useGameStore = create<GameStore>()(
       roundPhase: "idle",
       lastHand: null,
       lastPayout: 0,
+      swappedIndices: [],
 
       minBet: () => MIN_BET,
       maxBet: () => MAX_BET,
@@ -130,6 +133,7 @@ export const useGameStore = create<GameStore>()(
           roundPhase: "dealt",
           lastHand: null,
           lastPayout: 0,
+          swappedIndices: [],
         });
       },
 
@@ -157,6 +161,7 @@ export const useGameStore = create<GameStore>()(
         const newHand = [...hand];
         const newDiscarded = [...discarded];
         let remainingDeck = [...deck];
+        const swappedIndices: number[] = [];
 
         for (let i = 0; i < newHand.length; i += 1) {
           if (!heldIndices[i]) {
@@ -164,6 +169,7 @@ export const useGameStore = create<GameStore>()(
             const draw = drawFromDeck(remainingDeck, 1);
             newHand[i] = draw.drawn[0];
             remainingDeck = draw.remaining;
+            swappedIndices.push(i);
           }
         }
 
@@ -178,6 +184,7 @@ export const useGameStore = create<GameStore>()(
           roundPhase: "complete",
           lastHand: evaluated,
           lastPayout: payout,
+          swappedIndices,
           players: players.map((p) => {
             if (p.id !== currentPlayerId) return normalizePlayer(p);
             const base = normalizePlayer(p);
@@ -216,6 +223,7 @@ export const useGameStore = create<GameStore>()(
         roundPhase: state.roundPhase,
         lastHand: state.lastHand,
         lastPayout: state.lastPayout,
+        swappedIndices: state.swappedIndices,
       }),
     },
   ),
